@@ -26,13 +26,14 @@ public abstract class Personagem {
       public String getNome() {
         return this.nome;
       }
-
       public int getVida() {
         return this.vida; 
       }
-
       public int getAtaque() {
         return this.ataque;
+      }
+      public int getDefesa() {
+        return this.defesa;
       }
 
      

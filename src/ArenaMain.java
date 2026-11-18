@@ -26,7 +26,6 @@ public class ArenaMain {
                 int escolha = scanner.nextInt();
                 switch (escolha) {
                     case 1:
-
                         guerreiro.atacar(mago);
                         break;
                     case 2:
@@ -40,7 +39,6 @@ public class ArenaMain {
                 if (mago.getVida() > 0) {
                     mago.atacar(guerreiro);
                 }
-
                 System.out.println("\n-- Situação atual --\n");
                 guerreiro.mostraDados();
                 System.out.println("--------------------------");
@@ -48,7 +46,8 @@ public class ArenaMain {
                 turnos++;
             }
         }
-
+        
+        
         System.out.println("\n--- FIM DA BATALHA ---\n");
         if (guerreiro.getVida() <= 0) {
             System.out.println(mago.getNome() + " é o vencedor!");
