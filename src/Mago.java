@@ -1,26 +1,25 @@
 public class Mago extends Personagem {
-    private static final int DEFESA_BASE = 30; 
 
     private int danoMagico;
     private int defesaMagica;
     private int mana;
 
     public Mago(String nome) {
-         super(nome, -30, 20, DEFESA_BASE);
+         super(nome,-25, 22,45);
          
-         this.danoMagico = 30;
+         this.danoMagico = 25;
          this.defesaMagica = 25;
          this.mana = 20;
     }
 
     @Override 
-    public void receberDano(int danoBruto) {
+    public void receberDano(int  danoBruto) {
         int danoAbsorvido = Math.min(this.defesaMagica, danoBruto);
         this.defesaMagica -= danoAbsorvido;
         int danoRestante = danoBruto - danoAbsorvido;
 
         if (danoAbsorvido > 0 && this.defesaMagica == 0) {
-            System.out.println(this.getNome() + ": A defesa mágica se esgotou! ");
+            System.out.println(this.getNome() + ": Usou toda a defesa mágica para se defender! ");
         }
         if (danoRestante > 0) {
             super.receberDano(danoRestante);
@@ -36,7 +35,7 @@ public class Mago extends Personagem {
       if(mana >= 10) {
             mana -=10;
             int danoSomado = (this.danoMagico + this.getAtaque());
-            System.out.println(this.getNome() + ": lançou um ataque mágico no " + alvo.getNome() + "!");
+            System.out.println(this.getNome() + ": lançou um ataque mágico no " + alvo.getNome() + " com " + danoSomado + " de dano!");
             alvo.receberDano(danoSomado);
       } else {
             super.atacar(alvo);

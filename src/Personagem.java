@@ -1,14 +1,17 @@
 public abstract class Personagem {
     private static final int VIDA_BASE = 100;
+    private static final int MAX_CURAS = 3;
     private final int vidaMaxima;
+    private final int defesaBase = 0;
 
       private String nome;
-      private int vida;
-      private int ataque;
-      private int defesa;
+      private int  vida;
+      private int  ataque;
+      private int  defesa;
+      private int curasUsadas;
 
-      /* Construtor - base dos objetos */
-      public Personagem(String nome, int bonusVida, int ataque, int defesa) {
+     
+      public Personagem(String nome, int bonusVida, int ataque, int defesa){
             if(nome == null) {
                 throw new IllegalArgumentException("Nome não pode ser vazio.");
             }
@@ -20,26 +23,27 @@ public abstract class Personagem {
             this.vidaMaxima = Math.min(200, bonusVida + VIDA_BASE);
             this.vida = this.vidaMaxima;
             this.ataque = ataque;
-            this.defesa = defesa;
+            this.defesa = Math.min(100, defesaBase + defesa);
+            
       }
 
-      public String getNome() {
+      public String getNome(){
         return this.nome;
       }
-      public int getVida() {
+      public int  getVida(){
         return this.vida; 
       }
-      public int getAtaque() {
+      public int getAtaque(){
         return this.ataque;
       }
-      public int getDefesa() {
+      public int getDefesa(){
         return this.defesa;
       }
 
      
     public void receberDano(int danoBruto){
         int danoAbsorvido = Math.min(danoBruto, this.defesa);
-        this.defesa -= danoAbsorvido;
+        this.defesa -= danoAbsorvido; 
 
         if(this.defesa == 0){
             System.out.println(this.nome + ": Está sem defesa!" );
@@ -64,18 +68,22 @@ public abstract class Personagem {
         alvo.receberDano(this.ataque);
     }
 
-    public void curar(int quantidade) {
+    
+    public void curar(int quantidade){
         if (quantidade <= 0) {
             throw new IllegalArgumentException("A quantidade de cura deve ser positiva.");
         }
-
         if (this.vida <= 0) {
            System.out.println(this.nome + ": não pode ser curado porque está derrotado.");
            return;
-    }
-
+        }
+        if (this.curasUsadas >= MAX_CURAS) {
+            System.out.println(this.nome + ": atingiu o limite de " + MAX_CURAS + " curas.");
+            return;
+        }
         int vidaAnterior = this.vida;
         this.vida += Math.min(quantidade, this.vidaMaxima - this.vida);
+        this.curasUsadas++;
 
         int vidaRecuperada = this.vida - vidaAnterior;
         System.out.println(this.nome + ": recuperou " + vidaRecuperada + " pontos de vida.");
