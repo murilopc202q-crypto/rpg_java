@@ -4,9 +4,9 @@ public class Guerreiro extends Personagem{
     private int danoFuria;
 
     public Guerreiro(String nome){
-        super(nome, 30, 35,50);
+        super(nome, 30, 35,50,20);
 
-        this.armadura = 20;
+        this.armadura = super.getDefesaEspecial();
         this.furia = 20;
         this.danoFuria = 24;
     }

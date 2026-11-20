@@ -5,10 +5,10 @@ public class Mago extends Personagem {
     private int mana;
 
     public Mago(String nome) {
-         super(nome,-25, 22,45);
+         super(nome,-25, 22,45, 25);
          
          this.danoMagico = 25;
-         this.defesaMagica = 25;
+         this.defesaMagica = super.getDefesaEspecial();
          this.mana = 20;
     }
 

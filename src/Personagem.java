@@ -8,14 +8,15 @@ public abstract class Personagem {
       private int  vida;
       private int  ataque;
       private int  defesa;
+      private int  defesaEspecial;
       private int curasUsadas;
 
      
-      public Personagem(String nome, int bonusVida, int ataque, int defesa){
+      public Personagem(String nome, int bonusVida, int ataque, int defesa, int defesaEspecial){
             if(nome == null) {
                 throw new IllegalArgumentException("Nome não pode ser vazio.");
             }
-            if(ataque < 0 || defesa < 0) {
+            if(ataque <= 0 || defesa <= 0 || defesaEspecial < 0) {
                 throw new IllegalArgumentException("Ataque e defesa não podem ser negativos.");
             }
 
@@ -24,7 +25,7 @@ public abstract class Personagem {
             this.vida = this.vidaMaxima;
             this.ataque = ataque;
             this.defesa = Math.min(100, defesaBase + defesa);
-            
+            this.defesaEspecial = defesaEspecial;
       }
 
       public String getNome(){
@@ -38,6 +39,9 @@ public abstract class Personagem {
       }
       public int getDefesa(){
         return this.defesa;
+      }
+      public int getDefesaEspecial(){
+        return this.defesaEspecial;
       }
 
      

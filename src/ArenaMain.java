@@ -5,6 +5,8 @@ public class ArenaMain {
         Personagem guerreiro = new Guerreiro("Bárbaro");
         Personagem mago = new Mago("Gandolf");
         Personagem arqueiro = new Arqueiro("Arqueiro verde");
+        /*instanciar os inimigos - quando tiver pronto */
+
         int turnos = 1;
 
         try (Scanner scanner = new Scanner(System.in)) {
@@ -14,27 +16,39 @@ public class ArenaMain {
                 System.out.println(" 1: " + guerreiro.getNome());
                 System.out.println(" 2: " + mago.getNome());
                 System.out.print(" 3: " + arqueiro.getNome());
-                System.out.print("\nOpção: \n");
+                System.out.print("\nOpção: ");
+                int escolha1 = scanner.nextInt();
                 System.out.print("Escolha quem atacar:\n ");
-                System.out.print("4: ");
+                System.out.println("4: " + mago.getNome());      /*adicionar os inimigos aqui */
+                System.out.println("5: " + arqueiro.getNome()); /*adicionar os inimigos aqui */
+                System.out.println("6: " + guerreiro.getNome());
+                System.out.println("Opção: ");
+                int escolha2 = scanner.nextInt();
 
                 if (!scanner.hasNextInt()) {
                     if (!scanner.hasNext()) {
                         break;
                     }
                     scanner.next();
-                    System.out.println("Entrada inválida. Digite 1, 2 ou 3.");
+                    System.out.println("Entrada inválida. Digite 1, 2 ou 3.");                 
                     continue;
                 }
 System.out.println("\n");
-                int escolha = scanner.nextInt();
-                switch (escolha) {
-                    case 1:
-                        guerreiro.atacar(mago);
+                
+                switch (escolha1 + escolha2) {
+                    case 5:
+                       guerreiro.atacar(mago);
                         break;
-                    case 2:
-                        mago.atacar(mago);
+                    case 6:
+                       guerreiro.atacar(arqueiro);
                         break;
+                    case 8:
+                        mago.atacar(guerreiro);
+                        break;
+                    case 7:
+                        mago.atacar(arqueiro);
+                        break;
+
                     default:
                         System.out.println("Opção inválida. Digite 1, 2 ou 3.");
                         continue;

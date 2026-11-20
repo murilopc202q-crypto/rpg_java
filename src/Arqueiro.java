@@ -3,11 +3,19 @@ public class Arqueiro extends Personagem{
         private int ataqueComArco;
         
     public Arqueiro(String nome) {
-        super(nome,0,15,20);
+        super(nome,0,23,25,0);
 
         this.flexa = 20;
         this.ataqueComArco = 15;
     }
+    /*métodos para verificar se há flexas, e determinar se o arqueiro recebera dano por distância dos inimigos. */
+    public int getFlexa() {
+        return this.flexa;
+    }
+    public int getAtaqueComFlexa() {
+        return this.ataqueComArco;
+    }
+
 
     @Override
     public void atacar(Personagem alvo) {
