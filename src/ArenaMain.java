@@ -13,18 +13,12 @@ public class ArenaMain {
             while (guerreiro.getVida() > 0 && mago.getVida() > 0 && arqueiro.getVida() > 0) {
                 System.out.println("\n=== TURNO " + turnos + " ===");
                 System.out.println("Escolha com quem atacar:");
-                System.out.println(" 1: " + guerreiro.getNome());
-                System.out.println(" 2: " + mago.getNome());
-                System.out.print(" 3: " + arqueiro.getNome());
-                System.out.print("\nOpção: ");
+
                 int escolha1 = scanner.nextInt();
                 System.out.print("Escolha quem atacar:\n ");
-                System.out.println("4: " + mago.getNome());      /*adicionar os inimigos aqui */
-                System.out.println("5: " + arqueiro.getNome()); /*adicionar os inimigos aqui */
-                System.out.println("6: " + guerreiro.getNome());
-                System.out.println("Opção: ");
-                int escolha2 = scanner.nextInt();
 
+                int escolha2 = scanner.nextInt();
+                
                 if (!scanner.hasNextInt()) {
                     if (!scanner.hasNext()) {
                         break;
@@ -33,28 +27,7 @@ public class ArenaMain {
                     System.out.println("Entrada inválida. Digite 1, 2 ou 3.");                 
                     continue;
                 }
-System.out.println("\n");
-                
-                switch (escolha1 + escolha2) {
-                    case 5:
-                       guerreiro.atacar(mago);
-                        break;
-                    case 6:
-                       guerreiro.atacar(arqueiro);
-                        break;
-                    case 8:
-                        mago.atacar(guerreiro);
-                        break;
-                    case 7:
-                        mago.atacar(arqueiro);
-                        break;
-
-                    default:
-                        System.out.println("Opção inválida. Digite 1, 2 ou 3.");
-                        continue;
-                }
-
-              
+             
                 System.out.println("\n-- Situação atual --\n");
                 guerreiro.mostraDados();
                 System.out.println("--------------------------");

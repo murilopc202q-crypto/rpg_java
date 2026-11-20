@@ -63,13 +63,31 @@ public abstract class Personagem {
         }
     }
 
+    public void receberDano(int danoBruto, Personagem atacante) {
+        this.receberDano(danoBruto);
+    }
+
+
+    public void receberDanoDeEspinhos(int danoBruto) {
+        if (danoBruto <= 0 || this.vida <= 0) {
+            return;
+        }
+        int danoNaDefesa = Math.min(danoBruto, this.defesa);
+        this.defesa -= danoNaDefesa;
+        System.out.println(this.nome + ": recebeu " + danoNaDefesa
+                + " de dano dos espinhos na defesa base!");
+        if (this.defesa == 0) {
+            System.out.println(this.nome + ": Está sem defesa!");
+        }
+    }
+
 
     public void atacar(Personagem alvo){
             if(this.vida <= 0 || alvo.vida <= 0 || alvo == this) {
                 return;
             }
         System.out.println(this.nome + ": atacou " + alvo.nome + " com " + this.ataque + " de ataque!");
-        alvo.receberDano(this.ataque);
+        alvo.receberDano(this.ataque, this);
     }
 
     
@@ -93,6 +111,7 @@ public abstract class Personagem {
         System.out.println(this.nome + ": recuperou " + vidaRecuperada + " pontos de vida.");
     }
 
+    
     public void mostraDados(){
         System.out.println("Nome: " + this.nome);
         System.out.println("Vida: " + this.vida);

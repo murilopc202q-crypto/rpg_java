@@ -12,11 +12,42 @@ public class Orc extends Personagem {
 
     @Override
     public void receberDano(int danoBruto) {
-        int danoAbsorvido = Math.min(this.getDefesa(), danoBruto);
+        this.receberDano(danoBruto, null);
+    }
+
+    @Override
+    public void receberDano(int danoBruto, Personagem atacante) {
+        super.receberDano(danoBruto);
+        if (danoBruto <= 0 || this.espinhosNoEscudo <= 0) {
+            return;
+        }
+
+        this.espinhosNoEscudo = Math.max(0, this.espinhosNoEscudo - 5);
+        int danoEspinhos = this.espinhosNoEscudo;
+        if (danoEspinhos <= 0) {
+            System.out.println(this.getNome() + ": os espinhos do escudo se desgastaram.");
+            return;
+        }
+        if (atacante == null || atacante == this || this.getVida() <= 0 || atacante.getVida() <= 0) {
+            return;
+        }
+
+        System.out.println(this.getNome() + ": os espinhos do escudo revidam com "
+                + danoEspinhos + " de dano!");
+        atacante.receberDanoDeEspinhos(danoEspinhos);
     }
     
+
     @Override
-    public void atacar(Personagem alvo) {/*aqui dentro vai a lógica de poder atacar o arqueiro*/}
+    public void atacar(Personagem alvo) {
+        if(this.getVida() <= 0 || alvo.getVida() <= 0 || alvo == this) {
+            return;
+        }
+
+        int danoSomado = this.ataquePesado + this.getAtaque();
+        alvo.receberDano(danoSomado, this);
+    }
+
 
     @Override 
     public void mostraDados(){

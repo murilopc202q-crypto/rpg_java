@@ -26,6 +26,23 @@ public class Mago extends Personagem {
         }
     }
 
+    @Override
+    public void receberDanoDeEspinhos(int danoBruto) {
+        if (danoBruto <= 0 || this.getVida() <= 0) {
+            return;
+        }
+
+        int danoAbsorvido = Math.min(this.defesaMagica, danoBruto);
+        this.defesaMagica -= danoAbsorvido;
+        if (danoAbsorvido > 0) {
+            System.out.println(this.getNome() + ": recebeu " + danoAbsorvido
+                    + " de dano dos espinhos na defesa mágica!");
+        }
+        if (danoBruto > danoAbsorvido) {
+            super.receberDanoDeEspinhos(danoBruto - danoAbsorvido);
+        }
+    }
+
 
     @Override
     public void atacar(Personagem alvo) {
@@ -35,8 +52,9 @@ public class Mago extends Personagem {
       if(mana >= 10) {
             mana -=10;
             int danoSomado = (this.danoMagico + this.getAtaque());
-            System.out.println(this.getNome() + ": lançou um ataque mágico no " + alvo.getNome() + " com " + danoSomado + " de dano!");
-            alvo.receberDano(danoSomado);
+            System.out.println(this.getNome() + ": lançou um ataque mágico no " 
+                 + alvo.getNome() + " com " + danoSomado + " de dano!");
+            alvo.receberDano(danoSomado, this);
       } else {
             super.atacar(alvo);
       }      
