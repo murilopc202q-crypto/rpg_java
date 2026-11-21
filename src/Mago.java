@@ -26,6 +26,7 @@ public class Mago extends Personagem {
         }
     }
 
+    
     @Override
     public void receberDanoDeEspinhos(int danoBruto) {
         if (danoBruto <= 0 || this.getVida() <= 0) {
@@ -61,12 +62,9 @@ public class Mago extends Personagem {
     }
 
 
-    @Override 
-    public void mostraDados(){
-        super.mostraDados();
-        System.out.println("dano mágico: " + danoMagico);
-        System.out.println("defesa mágica: " + defesaMagica);
-        System.out.println("mana: " + mana);
+    @Override
+    public String getResumoAtributosProprios() {
+    return String.format("danoMagico=%d; defesaMagica=%d; mana=%d",
+            danoMagico, defesaMagica, mana);
     }
-   
 }

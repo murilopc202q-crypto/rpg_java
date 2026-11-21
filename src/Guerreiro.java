@@ -26,6 +26,7 @@ public class Guerreiro extends Personagem{
         }  
     }
 
+    
     @Override
     public void receberDanoDeEspinhos(int danoBruto) {
         if (danoBruto <= 0 || this.getVida() <= 0) {
@@ -60,12 +61,10 @@ public class Guerreiro extends Personagem{
         }
     }
 
-    
+
     @Override
-    public void mostraDados() {
-        super.mostraDados();
-        System.out.println("armadura: " + this.armadura);
-        System.out.println("fúria: " + this.furia);
-        System.out.println("dano por fúria: " + this.danoFuria);
+    public String getResumoAtributosProprios() {
+    return String.format("armadura=%d; furia=%d; danoFuria=%d",
+              armadura, furia, danoFuria);
     }
 }

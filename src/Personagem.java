@@ -1,6 +1,5 @@
 public abstract class Personagem {
     private static final int VIDA_BASE = 100;
-    private static final int MAX_CURAS = 3;
     private final int vidaMaxima;
     private final int defesaBase = 0;
 
@@ -9,8 +8,6 @@ public abstract class Personagem {
       private int  ataque;
       private int  defesa;
       private int  defesaEspecial;
-      private int curasUsadas;
-
      
       public Personagem(String nome, int bonusVida, int ataque, int defesa, int defesaEspecial){
             if(nome == null) {
@@ -90,32 +87,14 @@ public abstract class Personagem {
         alvo.receberDano(this.ataque, this);
     }
 
-    
-    public void curar(int quantidade){
-        if (quantidade <= 0) {
-            throw new IllegalArgumentException("A quantidade de cura deve ser positiva.");
-        }
-        if (this.vida <= 0) {
-           System.out.println(this.nome + ": não pode ser curado porque está derrotado.");
-           return;
-        }
-        if (this.curasUsadas >= MAX_CURAS) {
-            System.out.println(this.nome + ": atingiu o limite de " + MAX_CURAS + " curas.");
-            return;
-        }
-        int vidaAnterior = this.vida;
-        this.vida += Math.min(quantidade, this.vidaMaxima - this.vida);
-        this.curasUsadas++;
 
-        int vidaRecuperada = this.vida - vidaAnterior;
-        System.out.println(this.nome + ": recuperou " + vidaRecuperada + " pontos de vida.");
+    public String getResumoAtributosBase() {
+    return String.format(
+        "vida=%d/%d; ataque=%d; defesa=%d;",
+        vida, vidaMaxima, ataque, defesa);
     }
 
-    
-    public void mostraDados(){
-        System.out.println("Nome: " + this.nome);
-        System.out.println("Vida: " + this.vida);
-        System.out.println("Ataque: " + this.ataque);
-        System.out.println("Defesa: " + this.defesa);
-    }
+    public String getResumoAtributosProprios() {
+    return "-";
+    } 
 }

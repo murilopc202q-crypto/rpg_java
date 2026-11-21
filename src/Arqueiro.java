@@ -32,4 +32,11 @@ public class Arqueiro extends Personagem{
                 alvo.receberDano(this.ataqueComArco, this);
         } 
     }
+
+
+    @Override
+    public String getResumoAtributosProprios() {
+    return String.format("flechas=%d; ataqueComArco=%d",
+            flexa, ataqueComArco);
+    }
 }

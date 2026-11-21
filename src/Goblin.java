@@ -6,6 +6,7 @@ public class Goblin extends Personagem {
         super(nome, -10, 24, 48, 0);
     }
 
+
     @Override
     public void atacar(Personagem alvo) {
         if (this.getVida() <= 0 || alvo == null || alvo.getVida() <= 0 || alvo == this) {
@@ -20,13 +21,13 @@ public class Goblin extends Personagem {
             alvo.receberDano(dano, this);
             return;
         }
-
         super.atacar(alvo);
     }
 
+
     @Override
-    public void mostraDados() {
-        super.mostraDados();
-        System.out.println("Ataque surpresa disponível: " + this.ataqueSurpresaDisponivel);
+    public String getResumoAtributosProprios() {
+    return String.format("ataqueSurpresaDisponivel=%s; bonusAtaqueSurpresa=%d",
+            ataqueSurpresaDisponivel, BONUS_ATAQUE_SURPRESA);
     }
 }

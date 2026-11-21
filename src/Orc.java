@@ -49,11 +49,9 @@ public class Orc extends Personagem {
     }
 
 
-    @Override 
-    public void mostraDados(){
-        super.mostraDados();
-        System.out.println("escudo com espinhos: " + this.espinhosNoEscudo);
-        System.out.println("ataque pesado: " + this.ataquePesado);
+    @Override
+    public String getResumoAtributosProprios() {
+    return String.format("espinhosNoEscudo=%d; ataquePesado=%d",
+            espinhosNoEscudo, ataquePesado);
     }
-
 }
