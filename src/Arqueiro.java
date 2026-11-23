@@ -22,7 +22,7 @@ public class Arqueiro extends Personagem{
             alvo.receberDano(this.getAtaque(), this);
         } else {
             System.out.println(this.getNome() + ": está sem flechas e ataca com arco o " 
-                + alvo.getNome() + "causando " + this.ataqueComArco + " de dano!");
+                + alvo.getNome() + " causando " + this.ataqueComArco + " de dano!");
                 alvo.receberDano(this.ataqueComArco, this);
         } 
     }
