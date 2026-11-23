@@ -10,10 +10,18 @@ public class Orc extends Personagem {
     } 
 
 
-    @Override
-    public void receberDano(int danoBruto) {
-        this.receberDano(danoBruto, null);
+        @Override
+    public void atacar(Personagem alvo) {
+        if(this.getVida() <= 0 || alvo.getVida() <= 0 || alvo == this) {
+            return;
+        }
+        
+        int danoSomado = this.ataquePesado + this.getAtaque();
+        System.out.println(this.getNome() + ": atacou com ataque de " + danoSomado +  
+            " o " + alvo.getNome());
+        alvo.receberDano(danoSomado, this);
     }
+
 
     @Override
     public void receberDano(int danoBruto, Personagem atacante) {
@@ -37,17 +45,6 @@ public class Orc extends Personagem {
         atacante.receberDanoDeEspinhos(danoEspinhos);
     }
     
-
-    @Override
-    public void atacar(Personagem alvo) {
-        if(this.getVida() <= 0 || alvo.getVida() <= 0 || alvo == this) {
-            return;
-        }
-
-        int danoSomado = this.ataquePesado + this.getAtaque();
-        alvo.receberDano(danoSomado, this);
-    }
-
 
     @Override
     public String getResumoAtributosProprios() {

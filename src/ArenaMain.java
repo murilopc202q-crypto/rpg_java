@@ -24,7 +24,7 @@ public class ArenaMain {
                     System.out.println(i + " - " + herois[i].getNome());
                 }
 
-                System.out.println("Opção: ");
+                System.out.printf("Opção: ");
                 if (!scanner.hasNextInt()) {
                     if (!scanner.hasNext()) {
                         break;
@@ -45,7 +45,7 @@ public class ArenaMain {
                 for (int i = 0; i < inimigos.length; i++) {
                     System.out.println(i + " - " + inimigos[i].getNome());
                 }
-                System.out.println("Opção: ");
+                System.out.printf("Opção: ");
 
                 if (!scanner.hasNextInt()) {
                     if (!scanner.hasNext()) {
@@ -62,6 +62,8 @@ public class ArenaMain {
                     System.out.println("Inimigo inválido ou derrotado.");
                     continue;
                 }
+
+                System.out.println("\n -- BATALHA --");
 
                 Personagem heroiEscolhido = herois[indiceHeroi];
                 Personagem inimigoEscolhido = inimigos[indiceInimigo];
@@ -104,7 +106,7 @@ public class ArenaMain {
 
     private static void mostrarDadosColunas(
             Personagem[] herois, Personagem[] inimigos) {
-        System.out.printf("%-64s | %-64s%n", "\nHERÓIS", " INIMIGOS");
+        System.out.printf("%-64s | %-64s%n", "HERÓIS", " INIMIGOS");
 
         int quantidade = Math.max(herois.length, inimigos.length);
         for (int i = 0; i < quantidade; i++) {
@@ -136,9 +138,9 @@ public class ArenaMain {
 
         for (int i = 0; i < quantidade; i++) {
             String atributoHeroi = i < atributosHeroi.length
-                    ? titulo + ": " + atributosHeroi[i] : "";
+                    ? titulo + ": " + atributosHeroi[i] : " ";
             String atributoInimigo = i < atributosInimigo.length
-                    ? titulo + ": " + atributosInimigo[i] : "";
+                    ? titulo + ": " + atributosInimigo[i] : " ";
             imprimirLinha(atributoHeroi, atributoInimigo);
         }
     }

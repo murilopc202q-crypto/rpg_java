@@ -16,8 +16,8 @@ public class Goblin extends Personagem {
         if (this.ataqueSurpresaDisponivel) {
             this.ataqueSurpresaDisponivel = false;
             int dano = this.getAtaque() + BONUS_ATAQUE_SURPRESA;
-            System.out.println(this.getNome() + ": realizou um ataque surpresa contra "
-                    + alvo.getNome() + " causando " + dano + " de dano!");
+            System.out.println(this.getNome() + ": realizou um ataque de " + dano + " de dano surpresa contra "
+                    + alvo.getNome());
             alvo.receberDano(dano, this);
             return;
         }

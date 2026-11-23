@@ -41,6 +41,15 @@ public abstract class Personagem {
         return this.defesaEspecial;
       }
 
+
+      public void atacar(Personagem alvo){
+            if(this.vida <= 0 || alvo.vida <= 0 || alvo == this) {
+                return;
+            }
+        System.out.println(this.nome + ": atacou " + alvo.nome + " com " + this.ataque + " de ataque!");
+        alvo.receberDano(this.ataque, this);
+     }
+
      
     public void receberDano(int danoBruto){
         int danoAbsorvido = Math.min(danoBruto, this.defesa);
@@ -53,7 +62,7 @@ public abstract class Personagem {
         int danoNaVida = (danoBruto -  danoAbsorvido);
         this.vida = Math.max(0,this.vida - danoNaVida);   
 
-        System.out.println( this.nome + ": recebeu " + danoNaVida + " de dano do ataque! ");
+        System.out.println( this.nome + ": recebeu " + danoNaVida + " de dano do ataque em sua vida! ");
 
         if( this.vida == 0) {
             System.out.println( this.nome + ": Está morto! ");
@@ -76,15 +85,6 @@ public abstract class Personagem {
         if (this.defesa == 0) {
             System.out.println(this.nome + ": Está sem defesa!");
         }
-    }
-
-
-    public void atacar(Personagem alvo){
-            if(this.vida <= 0 || alvo.vida <= 0 || alvo == this) {
-                return;
-            }
-        System.out.println(this.nome + ": atacou " + alvo.nome + " com " + this.ataque + " de ataque!");
-        alvo.receberDano(this.ataque, this);
     }
 
 

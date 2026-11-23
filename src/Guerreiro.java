@@ -12,6 +12,23 @@ public class Guerreiro extends Personagem{
     }
 
     
+        @Override
+    public void atacar(Personagem alvo) {
+        if(this.getVida() <= 0 || alvo.getVida() <= 0 || alvo == this) {
+            return;
+        }
+        if(furia >= 10) {
+            furia -= 10;
+            int danoSomado = (this.getAtaque() + this.danoFuria);
+            System.out.println(this.getNome() + ": Atacou com fúria o " + alvo.getNome() 
+                + " causando " + danoSomado + " de dano!");
+            alvo.receberDano(danoSomado, this);
+        } else {
+           super.atacar(alvo);
+        }
+    }
+
+
     @Override
     public void receberDano(int danoBruto) {
         int danoAbsorvido = Math.min(this.armadura, danoBruto);
@@ -41,23 +58,6 @@ public class Guerreiro extends Personagem{
         }
         if (danoBruto > danoAbsorvido) {
             super.receberDanoDeEspinhos(danoBruto - danoAbsorvido);
-        }
-    }
-
-
-    @Override
-    public void atacar(Personagem alvo) {
-        if(this.getVida() <= 0 || alvo.getVida() <= 0 || alvo == this) {
-            return;
-        }
-        if(furia >= 10) {
-            furia -= 10;
-            int danoSomado = (this.getAtaque() + this.danoFuria);
-            System.out.println(this.getNome() + ": Atacou com fúria o " + alvo.getNome() 
-                + " causando " + danoSomado + " de dano!");
-            alvo.receberDano(danoSomado, this);
-        } else {
-           super.atacar(alvo);
         }
     }
 
