@@ -21,7 +21,8 @@ public class ArenaMain {
                 System.out.println("\n=== TURNO " + turnos + " ===");
                 System.out.println("\n--- Escolha com quem atacar ---");
                 for(int i = 0; i < herois.length; i++) {
-                    System.out.println(i + " - " + herois[i].getNome());
+                    String status = herois[i].getVida() <= 0 ? " [DERROTADO]" : "";
+                    System.out.println(i + " - " + herois[i].getNome() + status);
                 }
 
                 System.out.printf("Opção: ");
@@ -43,7 +44,8 @@ public class ArenaMain {
 
                 System.out.print("\n --- Escolha quem atacar ---\n ");
                 for (int i = 0; i < inimigos.length; i++) {
-                    System.out.println(i + " - " + inimigos[i].getNome());
+                    String status = inimigos[i].getVida() <= 0 ? " [DERROTADO]" : "";
+                    System.out.println(i + " - " + inimigos[i].getNome() + status);
                 }
                 System.out.printf("Opção: ");
 
